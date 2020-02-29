@@ -9,15 +9,24 @@
 plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
+    id 'maven-publish'
 }
+
+// Library dependency versions
+def functionalLibraryVersion = '1.0.0'
+
+// Current Publication Version
+version = '1.0.0'
+// Organization
+group = "com.samandrob.libraries"
 
 repositories {
-    // Use jcenter for resolving dependencies.
-    // You can declare any Maven/Ivy/file repository here.
+    mavenLocal()
     jcenter()
 }
-
 dependencies {
+    implementation "com.samandrob.libraries:functional:${functionalLibraryVersion}"
+
     // This dependency is exported to consumers, that is to say found on their compile classpath.
     api 'org.apache.commons:commons-math3:3.6.1'
 
@@ -26,4 +35,26 @@ dependencies {
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            pom {
+                name = 'Security Library'
+                description = 'A library implementing security concepts'
+                developers {
+                    developer {
+                        id = 'Sam'
+                        name = 'Sam'
+                    }
+                    developer {
+                        id = 'Rob'
+                        name = 'Rob'
+                    }
+                }
+            }
+        }
+    }
 }

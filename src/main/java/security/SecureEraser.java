@@ -8,13 +8,13 @@ package security;
 * @author  Sam
 */
 
-import com.example.hydrus.security.SecureRandomGenerator;
 import java.util.ArrayList;
 
 public class SecureEraser {
 
-    private static int _DELETE_ITERATIONS_FOR_SECURE_DATA_ERASING = 120;
-    private static int _DELETE_ITERATIONS_FOR_ERASING_RAM = 2;
+    private static final int _DELETE_ITERATIONS_FOR_SECURE_DATA_ERASING = 120;
+    private static final int _DELETE_ITERATIONS_FOR_ERASING_RAM = 2;
+    private static final int _MAX_BYTE_VALUE = 254;
 
     /*-------------------------------------------------------------------------------------------------
      * PUBLIC STATIC
@@ -60,13 +60,13 @@ public class SecureEraser {
      -------------------------------------------------------------------------------------------------*/
     private static void randomizeCharacters(char[] charsToRandomize) {
         for (int characterIndex = 0; characterIndex < charsToRandomize.length; characterIndex++) {
-            charsToRandomize[characterIndex] = SecureRandomGenerator.generateRandomCharacter();
+            charsToRandomize[characterIndex] = (char) SecureRandomGenerator.generateRandomByteWithBound(_MAX_BYTE_VALUE);
         }
     }
 
     private static void randomizeBytes(byte[] bytesToRandomize) {
         for (int characterIndex = 0; characterIndex < bytesToRandomize.length; characterIndex++) {
-            bytesToRandomize[characterIndex] = (byte) SecureRandomGenerator.generateRandomCharacter();
+            bytesToRandomize[characterIndex] = SecureRandomGenerator.generateRandomByteWithBound(_MAX_BYTE_VALUE);
         }
     }
 
@@ -91,7 +91,7 @@ public class SecureEraser {
     * @author  Rob
     * @author  Sam
     */
-    private class MemoryWipeObject {
+    private static class MemoryWipeObject {
 
         public byte memoryByteToSet;
     }

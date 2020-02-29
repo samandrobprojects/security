@@ -115,12 +115,6 @@ public class SecureBytes {
         return;
     }
 
-    @Override
-    protected void finalize() throws Throwable {
-        this.securelyDeleteBytes();
-        super.finalize();
-    }
-
     private boolean _compareMemoryToMemoryIn(SecureBytes secureBytesToCompareTo) {
         if(_bytes.length == secureBytesToCompareTo.getLength()) {
            return _compareEqualLengthByteArrays(_bytes, secureBytesToCompareTo.getByteRepresentation());

@@ -36,7 +36,8 @@ public class RandomAlphanumericCharacterGenerator {
     public static byte[] generateRandomAlphanumericCharacterByteArrayWithLength(int length) {
         byte[] randomAlphanumericCharacterByteArray = new byte[length];
         for(int index = 0; index < length; index++) {
-            randomAlphanumericCharacterByteArray[index] = SecureRandomGenerator.generateRandomByteWithBound(_START_OF_ASCII_CHARACTERS) + _NUMBER_OF_ASCII_CHARACTERS;
+            randomAlphanumericCharacterByteArray[index] = (byte) (SecureRandomGenerator.generateRandomByteWithBound(_NUMBER_OF_ASCII_CHARACTERS) + _START_OF_ASCII_CHARACTERS);
+            System.out.println((int) randomAlphanumericCharacterByteArray[index]);
         }
         return randomAlphanumericCharacterByteArray;
     }
@@ -52,7 +53,7 @@ public class RandomAlphanumericCharacterGenerator {
     public static String generateRandomAlphanumericCharacterStringWithLength(int length) {
         String randomAlphanumericCharacterString = "";
         for(int index = 0; index < length; index++) {
-            char randomAlphanumericCharacter = (char) (SecureRandomGenerator.generateRandomByteWithBound(_START_OF_ASCII_CHARACTERS) + _NUMBER_OF_ASCII_CHARACTERS);
+            char randomAlphanumericCharacter = (char) (SecureRandomGenerator.generateRandomByteWithBound(_NUMBER_OF_ASCII_CHARACTERS) + _START_OF_ASCII_CHARACTERS);
             randomAlphanumericCharacterString += Character.toString(randomAlphanumericCharacter);
         }
         return randomAlphanumericCharacterString;
