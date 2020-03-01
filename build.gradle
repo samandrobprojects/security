@@ -13,10 +13,10 @@ plugins {
 }
 
 // Library dependency versions
-def functionalLibraryVersion = '1.0.0'
+def functionalLibraryVersion = '1.0.1'
 
 // Current Publication Version
-version = '1.0.0'
+version = '1.0.1'
 // Organization
 group = "com.samandrob.libraries"
 
